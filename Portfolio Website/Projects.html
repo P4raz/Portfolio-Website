@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Perazim Mutampuka</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            --primary-color: #00eaff;
+            --secondary-color: #0088cc;
+            --dark-color: #001a33;
+            --light-color: #e6f7ff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--dark-color), #003366);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 20, 40, 0.8);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .name {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .name span {
+            color: white;
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+        }
+
+        .page-header p {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(0, 20, 40, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 234, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h2 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: var(--light-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .demo-link {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .demo-link:hover {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .code-link {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .code-link:hover {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            margin-top: 80px;
+            color: var(--light-color);
+            font-size: 1rem;
+            background-color: rgba(0, 20, 40, 0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1080px) {
+            .main-content {
+                padding: 30px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-left: 200px;
+                padding: 25px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .name span {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+            
+            .name {
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+                padding-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-links a:hover {
+                transform: translateY(-3px);
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .project-content h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .project-link {
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h1 class="name">Perazim<br><span>Mutampuka</span></h1>
+        <div class="nav-links">
+            <a href="index.html" class="Home">Home</a>
+            <a href="Services.html" class="Services">Services</a>
+            <a href="Skills.html" class="Skills">Skills</a>
+            <a href="Education.html" class="Education">Education</a>
+            <a href="Projects.html" class="Projects">Projects</a>
+            <a href="Contact2.html" class="Contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>My Projects</h1>
+            <p>Here are some of my recent web development projects showcasing my skills and expertise.</p>
+        </div>
+
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <img src="Screenshot_26-6-2025_132910_perazim-digital.web.app.jpeg" alt="E-Commerce Website" class="project-image">
+                <div class="project-content">
+                    <h2>E-Commerce Platform</h2>
+                    <p>A full-featured online store with product catalog, shopping cart, and secure checkout system.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://perazim-digital.web.app" class="project-link demo-link">View Website</a>
+                        <a href="#" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <img src="Screenshot_26-6-2025_13227_.jpeg" alt="Portfolio Website" class="project-image">
+                <div class="project-content">
+                    <h2>Personal Portfolio</h2>
+                    <p>A responsive portfolio website showcasing my skills, projects, and professional information.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link demo-link">View Website</a>
+                        <a href="#" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <img src="Screenshot_14-7-2025_225115_.jpeg" alt="Car Part Retail Management System" class="project-image">
+                <div class="project-content">
+                    <h2>Car Part Retail Management System</h2>
+                    <p>A productivity application for creating, organizing, and tracking tasks with user authentication.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                         <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link demo-link">View Website</a>
+                        <a href="https://github.com/P4raz/P4raz/tree/main/Management%20System%20Assignment" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <img src="Screenshot_13-7-2025_213341_.jpeg" alt="Weather Dashboard" class="project-image">
+                <div class="project-content">
+                    <h2>Weather Dashboard</h2>
+                    <p>A weather application that displays current conditions and forecasts using a weather API.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">API Integration</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link demo-link">View Website</a>
+                        <a href="#" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400/001a33/00eaff?text=Blog+Platform" alt="Blog Platform" class="project-image">
+                <div class="project-content">
+                    <h2>Task Management App</h2>
+                    <p>A task management application for creating and managing blog posts with admin dashboard.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                         <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link demo-link">View Website</a>
+                        <a href="#" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <img src="Screenshot_7-7-2025_93154_.jpeg" alt="Restaurant Website" class="project-image">
+                <div class="project-content">
+                    <h2>Restaurant Website</h2>
+                    <p>A responsive website for a restaurant with menu, reservation system, and gallery.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://savory-bytes.web.app" class="project-link demo-link">View Website</a>
+                        <a href="#" class="project-link code-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="copyright">
+                <h3>Copyright &copy; <span id="year"></span> <span style="color: white;">Perazim Mutampuka</span>. All rights reserved.</h3>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript for auto-updating copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Console log (kept from original)
+        console.log('Perazim Mutampuka');
+        const Person = {Name: "Perazim", Surname: "Mutampuka", Age: "20"};
+        console.log("My Personal Information Is", Person);
+    </script>
+</body>
+</html>

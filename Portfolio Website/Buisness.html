@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Perazim Mutampuka | Web Developer</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+ <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            --primary-color: #00eaff;
+            --secondary-color: #0088cc;
+            --dark-color: #001a33;
+            --light-color: #e6f7ff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--dark-color), #003366);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 20, 40, 0.8);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .name {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .name span {
+            color: white;
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .spiderman {
+            display: block;
+            margin: 30px auto;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 20px;
+            border: 2px solid var(--primary-color);
+            animation: spiderman 15s infinite;
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+        }
+
+        @keyframes spiderman {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .introduction, .introduction-2, .introduction-3 {
+            color: white;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 2rem;
+            animation: fade-in 2s;
+            text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .New {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 15px 0 30px;
+            color: var(--light-color);
+        }
+
+        .New span {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: var(--light-color);
+            font-size: 1rem;
+            background-color: rgba(0, 20, 40, 0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1080px) {
+            .introduction, .introduction-2, .introduction-3 {
+                font-size: 1.8rem;
+            }
+
+            .New {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                font-size: 1.1rem;
+                padding: 10px 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-left: 200px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .name span {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .introduction, .introduction-2, .introduction-3 {
+                font-size: 1.6rem;
+            }
+            
+            .spiderman {
+                max-width: 350px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px 10px;
+            }
+            
+            .name {
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+                padding-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-links a:hover {
+                transform: translateY(-3px);
+            }
+            
+            .introduction, .introduction-2, .introduction-3 {
+                font-size: 1.4rem;
+            }
+            
+            .New {
+                font-size: 1.1rem;
+                margin: 10px 0 20px;
+            }
+            
+            .btn {
+                font-size: 1rem;
+                padding: 10px 25px;
+                min-width: 140px;
+            }
+            
+            .spiderman {
+                max-width: 280px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .introduction, .introduction-2, .introduction-3 {
+                font-size: 1.2rem;
+            }
+            
+            .btn-container {
+                gap: 10px;
+            }
+            
+            .btn {
+                font-size: 0.9rem;
+                padding: 8px 20px;
+                min-width: 120px;
+            }
+            
+            .spiderman {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h1 class="name">Perazim<br><span>Mutampuka</span></h1>
+        <div class="nav-links">
+            <a href="Buisness.html" class="Home">Home</a>
+            <a href="Services.html" class="Services">Services</a>
+            <a href="Skills.html" class="Skills">Skills</a>
+            <a href="Education.html" class="Education">Education</a>
+            <a href="Projects.html" class="Projects">Projects</a>
+            <a href="Contact2.html" class="Contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <img src="Screenshot_20231110-143655.png" class="spiderman" alt="Marvel's Spiderman 2 Logo" loading="lazy">
+            <h1 class="introduction">Hello, it's <span style="color: var(--primary-color);">Perazim</span></h1>
+            <h2 class="introduction-2">I'm a <span style="color: var(--primary-color);">Web</span></h2>
+            <h2 class="introduction-3"><span style="color: var(--primary-color);">Developer</span></h2>
+            <p class="New">I specialize in <span>Web Application Development.</span></p>
+          
+        </div>
+
+        <footer>
+            <div class="copyright">
+                <h3>Copyright &copy; <span id="year"></span> <span style="color: white;">Perazim Mutampuka</span>. All rights reserved.</h3>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript for auto-updating copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Button click handlers
+        document.getElementById('Hire').addEventListener('click', function() {
+            alert('You\'ll soon be redirected to the hire page');
+            // window.location.href = "Contact2.html";
+        });
+
+        document.getElementById('Learn').addEventListener('click', function() {
+            alert('You\'ll be redirected to the learn more page');
+            // window.location.href = "About.html";
+        });
+
+        // Console log (kept from original)
+        console.log('Perazim Mutampuka');
+        const Person = {Name: "Perazim", Surname: "Mutampuka", Age: "20"};
+        console.log("My Personal Information Is", Person);
+    </script>
+</body>
+</html>

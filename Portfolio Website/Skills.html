@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Perazim Mutampuka</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            --primary-color: #00eaff;
+            --secondary-color: #0088cc;
+            --dark-color: #001a33;
+            --light-color: #e6f7ff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--dark-color), #003366);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 20, 40, 0.8);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .name {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .name span {
+            color: white;
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+        }
+
+        .page-header p {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background: rgba(0, 20, 40, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 234, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+
+        .skill-category h2 {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--light-color);
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(0, 234, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            margin-top: 80px;
+            color: var(--light-color);
+            font-size: 1rem;
+            background-color: rgba(0, 20, 40, 0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1080px) {
+            .main-content {
+                padding: 30px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-left: 200px;
+                padding: 25px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .name span {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+            
+            .name {
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+                padding-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-links a:hover {
+                transform: translateY(-3px);
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .skill-category {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .category-icon {
+                font-size: 1.5rem;
+            }
+            
+            .skill-category h2 {
+                font-size: 1.3rem;
+            }
+            
+            .skill-name {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h1 class="name">Perazim<br><span>Mutampuka</span></h1>
+        <div class="nav-links">
+            <a href="Buisness.html" class="Home">Home</a>
+            <a href="Services.html" class="Services">Services</a>
+            <a href="Skills.html" class="Skills">Skills</a>
+            <a href="Education.html" class="Education">Education</a>
+            <a href="Projects.html" class="Projects">Projects</a>
+            <a href="Contact2.html" class="Contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>My Skills</h1>
+            <p>Here's a comprehensive overview of my technical abilities and expertise in web development.</p>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-category">
+                <div class="category-header">
+                    <i class="fas fa-code category-icon"></i>
+                    <h2>Frontend Development</h2>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML5</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CSS3</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Responsive Design</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-header">
+                    <i class="fas fa-server category-icon"></i>
+                    <h2>Backend Development</h2>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PHP</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>MySQL</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Node.js</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>API Development</span>
+                        <span>78%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-header">
+                    <i class="fas fa-paint-brush category-icon"></i>
+                    <h2>Design & Tools</h2>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span>82%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 82%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git Version Control</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Figma</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Adobe Photoshop</span>
+                        <span>68%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 68%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-header">
+                    <i class="fas fa-rocket category-icon"></i>
+                    <h2>Other Skills</h2>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SEO Optimization</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Project Management</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Technical Writing</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Problem Solving</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="copyright">
+                <h3>Copyright &copy; <span id="year"></span> <span style="color: white;">Perazim Mutampuka</span>. All rights reserved.</h3>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript for auto-updating copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Animate skill bars on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                // Reset width to 0 for animation
+                const width = bar.style.width;
+                bar.style.width = '0';
+                // Trigger reflow to restart animation
+                void bar.offsetWidth;
+                // Set back to original width with animation
+                bar.style.width = width;
+            });
+        });
+
+        // Console log (kept from original)
+        console.log('Perazim Mutampuka');
+        const Person = {Name: "Perazim", Surname: "Mutampuka", Age: "20"};
+        console.log("My Personal Information Is, Person");
+    </script>
+</body>
+</html>

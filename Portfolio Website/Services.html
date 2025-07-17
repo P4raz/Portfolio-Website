@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Perazim Mutampuka</title>
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            --primary-color: #00eaff;
+            --secondary-color: #0088cc;
+            --dark-color: #001a33;
+            --light-color: #e6f7ff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--dark-color), #003366);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: rgba(0, 20, 40, 0.8);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .name {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .name span {
+            color: white;
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+        }
+
+        .page-header p {
+            color: var(--light-color);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(0, 20, 40, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 234, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--light-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            color: var(--light-color);
+            margin-bottom: 8px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(0, 234, 255, 0.2);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .service-btn:hover {
+            background: var(--primary-color);
+            color: var(--dark-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            margin-top: 80px;
+            color: var(--light-color);
+            font-size: 1rem;
+            background-color: rgba(0, 20, 40, 0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1080px) {
+            .main-content {
+                padding: 30px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-left: 200px;
+                padding: 25px;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .name span {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px 15px;
+            }
+            
+            .name {
+                margin-bottom: 15px;
+                font-size: 1.8rem;
+                padding-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                margin: 3px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-links a:hover {
+                transform: translateY(-3px);
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .service-card {
+                padding: 20px;
+            }
+            
+            .service-icon {
+                font-size: 2rem;
+            }
+            
+            .service-card h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h1 class="name">Perazim<br><span>Mutampuka</span></h1>
+        <div class="nav-links">
+            <a href="Buisness.html" class="Home">Home</a>
+            <a href="Services.html" class="Services">Services</a>
+            <a href="Skills.html" class="Skills">Skills</a>
+            <a href="Education.html" class="Education">Education</a>
+            <a href="Projects.html" class="Projects">Projects</a>
+            <a href="Contact2.html" class="Contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>My Services</h1>
+            <p>I offer comprehensive web development solutions tailored to your business needs. Here's how I can help bring your digital vision to life.</p>
+        </div>
+
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h2>Custom Web Development</h2>
+                <p>Bespoke websites built from scratch to perfectly match your requirements and brand identity.</p>
+                <ul class="service-features">
+                    <li>Responsive design for all devices</li>
+                    <li>Clean, semantic code</li>
+                    <li>Optimized for performance</li>
+                    <li>Cross-browser compatibility</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2>Web Application Development</h2>
+                <p>Interactive web applications with dynamic functionality to solve your business challenges.</p>
+                <ul class="service-features">
+                    <li>Frontend with HTML5, CSS3, JavaScript</li>
+                    <li>Backend with PHP and MySQL</li>
+                    <li>User authentication systems</li>
+                    <li>Database integration</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h2>UI/UX Design</h2>
+                <p>Beautiful, intuitive interfaces designed with your users in mind to maximize engagement.</p>
+                <ul class="service-features">
+                    <li>User-centered design approach</li>
+                    <li>Wireframing and prototyping</li>
+                    <li>Interactive design elements</li>
+                    <li>Accessibility compliance</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2>SEO Optimization</h2>
+                <p>Improve your search engine rankings and drive more organic traffic to your website.</p>
+                <ul class="service-features">
+                    <li>On-page SEO optimization</li>
+                    <li>Technical SEO audits</li>
+                    <li>Keyword research</li>
+                    <li>Performance optimization</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2>E-Commerce Solutions</h2>
+                <p>Complete online store setups with secure payment processing and inventory management.</p>
+                <ul class="service-features">
+                    <li>Product catalog setup</li>
+                    <li>Payment gateway integration</li>
+                    <li>Order management system</li>
+                    <li>Security best practices</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h2>Website Maintenance</h2>
+                <p>Ongoing support and updates to keep your website running smoothly and securely.</p>
+                <ul class="service-features">
+                    <li>Regular security updates</li>
+                    <li>Content updates</li>
+                    <li>Performance monitoring</li>
+                    <li>Backup solutions</li>
+                </ul>
+                <a href="Contact2.html" class="service-btn">Get Started</a>
+            </div>
+        </div>
+
+        <footer>
+            <div class="copyright">
+                <h3>Copyright &copy; <span id="year"></span> <span style="color: white;">Perazim Mutampuka</span>. All rights reserved.</h3>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript for auto-updating copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Console log (kept from original)
+        console.log('Perazim Mutampuka');
+        const Person = {Name: "Perazim", Surname: "Mutampuka", Age: "20"};
+        console.log("My Personal Information Is", Person);
+    </script>
+</body>
+</html>
